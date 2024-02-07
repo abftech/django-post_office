@@ -13,7 +13,9 @@ class Template(DjangoTemplate):
 
     def attach_related(self, email_message):
         assert isinstance(email_message, EmailMultiAlternatives), "Parameter must be of type EmailMultiAlternatives"
-        email_message.mixed_subtype = 'related'
+        #  COB-794
+        # email_message.mixed_subtype = 'related'
+        email_message.mixed_subtype = 'mixed'
         for attachment in self.template._attached_images:
             email_message.attach(attachment)
 
